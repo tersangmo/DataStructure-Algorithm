@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// without temporary slice
 func reverse1(s []int) []int {
 	for a, b := 0, len(s)-1; a < b; a, b = a+1, b-1 {
 		s[a], s[b] = s[b], s[a]
@@ -9,8 +10,10 @@ func reverse1(s []int) []int {
 	return s
 }
 
+//with temporary slice
+
 func reverse2(s []int) []int {
-	var s1 []int
+	s1 := make([]int, 0, len(s))
 	for i := len(s) - 1; i >= 0; i-- {
 		s1 = append(s1, s[i])
 	}
