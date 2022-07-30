@@ -2,21 +2,37 @@ package main
 
 import "fmt"
 
+type Object interface {
+	Enqueue()
+	Top() int
+	Dequeue() int
+}
+type Queue struct {
+	queue []int
+}
+
+func (q *Queue) Enqueue(a int) {
+
+	q.queue = append(q.queue, a)
+}
+func (q *Queue) Top() int {
+	return q.queue[0]
+}
+
+func (q *Queue) Dequeue() int {
+	temp := q.queue[0]
+	q.queue = q.queue[1:]
+	return temp
+}
+
 func main() {
-	var queue []int
+	c := new(Queue)
+	c.Enqueue(5)
+	c.Enqueue(9)
+	c.Enqueue(19)
+	fmt.Println("Top:", c.Top())
+	fmt.Println("Dequeue:", c.Dequeue())
+	fmt.Println("Top:", c.Top())
+	fmt.Println("Dequeue:", c.Dequeue())
 
-	queue = append(queue, 1, 2, 4, 6, 7)
-
-	for len(queue) > 0 {
-		// first in first out
-
-		// print the popped element
-
-		out := queue[0]
-		fmt.Println(out)
-
-		// update the queue
-
-		queue = queue[1:]
-	}
 }
